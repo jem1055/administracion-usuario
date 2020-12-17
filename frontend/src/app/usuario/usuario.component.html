@@ -1,0 +1,51 @@
+<div class="container-fluid">
+    <br/><br/><br/><br/><br/><br/>
+    <div class="row justify-content-center">
+      <div class="col-8 text-center">
+        <form>
+        
+          <input type="text" id="nombres" class="form-control mb-4" placeholder="Nombres" [(ngModel)]="usuario.nombres" name="nombres">
+          <input type="text" id="apellidos" class="form-control mb-4" placeholder="Apellidos" [(ngModel)]="usuario.apellidos" name="apellidos">
+          <input type="text" id="fechaCreacion" class="form-control mb-4" placeholder="Fecha Creacion" [(ngModel)]="usuario.fechaCreacion" name="fechaCreacion">
+          <input type="text" id="email" class="form-control mb-4" placeholder="Email" [(ngModel)]="usuario.email" name="email">
+          <input type="text" id="estado" class="form-control mb-4" placeholder="Estado" [(ngModel)]="usuario.estado" name="estado">
+        
+          <button class="btn btn-primary" type="button" (click)="registrarUsuario()">Registrar Usuario</button>
+        
+        </form>
+      </div>
+    </div><br/><br/>
+    <div class="row justify-content-center" *ngIf="usuarios != null && usuarios.length == 0">
+      <div class="col-8">
+        <p class="h6 mb-4">No hay usuarios registrados</p>
+      </div>
+    </div>
+    <div class="row justify-content-center" *ngIf="usuarios != null && usuarios.length > 0">
+      <div class="col-10">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th scope="col">Nombres</th>
+              <th scope="col">Apellidos</th>
+              <th scope="col">Fecha Creacion</th>
+              <th scope="col">Email</th>
+              <th scope="col">Estado</th>
+              <th scope="col">Ver</th>
+            </tr>
+          </thead>
+          <tbody >
+            <tr *ngFor="let usuario of usuarios">
+              <td>{{usuario.nombres}}</td>
+              <td>{{usuario.apellidos}}</td>
+              <td>{{usuario.fechaCreacion}}</td>
+              <td>{{usuario.email}}</td>
+              <td>{{usuario.estado}}</td>
+              <td><button class="btn btn-primary" type="button" [routerLink]="'tareas/' + usuario.usuarioId">Ver Tareas</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  
+  

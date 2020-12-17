@@ -1,0 +1,58 @@
+<div class="container-fluid">
+    <br/><br/><br/><br/><br/><br/>
+    <div class="row justify-content-center">
+      <div class="col-8 text-center">
+        <form>
+          <p>Crear tareas</p>
+        
+          <input type="text" id="descripcion" class="form-control mb-4" placeholder="Descripcion" [(ngModel)]="tarea.descripcion" name="descripcion">
+          <input type="text" id="fechaEjecucion" class="form-control mb-4" placeholder="Fecha Ejecucion" [(ngModel)]="tarea.fechaEjecucion" name="fechaEjecucion">
+          <input type="text" id="fechaCreacion" class="form-control mb-4" placeholder="Fecha Creacion" [(ngModel)]="tarea.fechaCreacion" name="fechaCreacion">
+          <input type="text" id="estado" class="form-control mb-4" placeholder="Estado" [(ngModel)]="tarea.estado" name="estado">
+        
+          <button class="btn btn-primary" type="button" (click)="registrarTarea()">Registrar Tarea</button>
+        
+        </form>
+      </div>
+    </div><br/><br/>
+  
+    <div class="row justify-content-center">
+      <div class="col-8 text-center">
+        <form>
+          <p>Filtros tareas</p>
+        
+          <input type="text" id="fechaCreacionFilter" class="form-control mb-4" placeholder="Fecha Creacion" [(ngModel)]="fechaCreacion" name="fechaCreacion">
+          <input type="text" id="estadoFilter" class="form-control mb-4" placeholder="Estado" [(ngModel)]="estado" name="estado">
+        
+          <button class="btn btn-primary" type="button" (click)="obtenerTareas()">Filtrar Tarea</button>
+        
+        </form>
+      </div>
+    </div><br/><br/>
+    <div class="row justify-content-center" *ngIf="tareas != null && tareas.length == 0">
+      <div class="col-8">
+        <p class="h6 mb-4">No hay tareas registradas</p>
+      </div>
+    </div>
+    <div class="row justify-content-center" *ngIf="tareas != null && tareas.length > 0">
+        <div class="col-8">
+            <table matSort (matSortChange)="sortData($event)" class="table table-striped">
+                <tr>
+                  <th mat-sort-header="descripcion">Descripción</th>
+                  <th mat-sort-header="fechaEjecucion">Fecha Ejecucion</th>
+                  <th mat-sort-header="fechaCreacion">Fecha Creacion</th>
+                  <th mat-sort-header="estado">Estado</th>
+                </tr>
+              
+                <tr *ngFor="let tarea of tareas">
+                    <td>{{tarea.descripcion}}</td>
+                    <td>{{tarea.fechaEjecucion}}</td>
+                    <td>{{tarea.fechaCreacion}}</td>
+                    <td>{{tarea.estado}}</td>
+                  </tr>
+            </table> 
+        </div>                 
+    </div>
+  </div>
+  
+  
