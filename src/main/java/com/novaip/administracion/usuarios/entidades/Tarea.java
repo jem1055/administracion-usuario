@@ -1,12 +1,9 @@
 package com.novaip.administracion.usuarios.entidades;
 
+import java.time.LocalDate;
 import java.util.Date;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 
 @Entity
@@ -14,15 +11,13 @@ import javax.persistence.Table;
 public class Tarea {
 
 	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int tareaId;
+
 	private String descripcion;
-	private Date fechaEjecucion;
-	private Date fechaCreacion;
+	private LocalDate fechaEjecucion;
+	private LocalDate fechaCreacion;
 	private String estado;
-	
-	@ManyToOne
-	@JoinColumn(name="usuario_id", nullable = false)
-	private Usuario usuario;
 
 	public int getTareaId() {
 		return tareaId;
@@ -40,19 +35,19 @@ public class Tarea {
 		this.descripcion = descripcion;
 	}
 
-	public Date getFechaEjecucion() {
+	public LocalDate getFechaEjecucion() {
 		return fechaEjecucion;
 	}
 
-	public void setFechaEjecucion(Date fechaEjecucion) {
+	public void setFechaEjecucion(LocalDate fechaEjecucion) {
 		this.fechaEjecucion = fechaEjecucion;
 	}
 
-	public Date getFechaCreacion() {
+	public LocalDate getFechaCreacion() {
 		return fechaCreacion;
 	}
 
-	public void setFechaCreacion(Date fechaCreacion) {
+	public void setFechaCreacion(LocalDate fechaCreacion) {
 		this.fechaCreacion = fechaCreacion;
 	}
 
@@ -64,13 +59,4 @@ public class Tarea {
 		this.estado = estado;
 	}
 
-	public Usuario getUsuario() {
-		return usuario;
-	}
-
-	public void setUsuario(Usuario usuario) {
-		this.usuario = usuario;
-	}
-	
-	
 }

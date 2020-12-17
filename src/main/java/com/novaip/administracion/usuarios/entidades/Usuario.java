@@ -1,12 +1,9 @@
 package com.novaip.administracion.usuarios.entidades;
 
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 
 @Entity
@@ -14,14 +11,16 @@ import javax.persistence.Table;
 public class Usuario {
 	
 	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int usuarioId;
 	private String nombres;
 	private String apellidos;
-	private Date fechaCreacion;
+	private LocalDate fechaCreacion;
 	private String email;
 	private String estado;
 	
-	@OneToMany(mappedBy = "usuario")	
+	@OneToMany()
+	@JoinColumn(name = "usuario_id")
 	private List<Tarea> tareas;
 	
 		
@@ -43,10 +42,10 @@ public class Usuario {
 	public void setApellidos(String apellidos) {
 		this.apellidos = apellidos;
 	}
-	public Date getFechaCreacion() {
+	public LocalDate getFechaCreacion() {
 		return fechaCreacion;
 	}
-	public void setFechaCreacion(Date fechaCreacion) {
+	public void setFechaCreacion(LocalDate fechaCreacion) {
 		this.fechaCreacion = fechaCreacion;
 	}
 	public String getEmail() {
